@@ -33,7 +33,7 @@ Route::get('/suma/{num1}/{num2}', function($num1, $num2)
 // Rutas
 Route::get('/', function()
 {
-    return "Pantalla pricnipal";
+    return "Pantalla principal";
 });
 
 Route::get('login', function()
