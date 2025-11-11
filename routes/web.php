@@ -27,9 +27,18 @@ Route::get('/suma/{num1}/{num2}', function($num1, $num2)
 ->where(array('num1' => '[0-9]+', 'num2' => '[0-9]+'));
 
 // Rutas
-Route::get('/', function()
-{
+Route::get('/', function() {
     return view('home', );
+});
+
+Route::get('/users', function() {
+    return view('users.usersList', [
+        'users' => [
+            ['id' => 1, 'name' => 'Alice'],
+            ['id' => 2, 'name' => 'Marta'],
+            ['id' => 3, 'name' => 'Gabriel'],
+        ]
+    ]);
 });
 
 Route::get('login', function()
