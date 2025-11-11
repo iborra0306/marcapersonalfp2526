@@ -2,10 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('hola', function()
 {
     return '¡Hola mundo!';
@@ -33,7 +29,7 @@ Route::get('/suma/{num1}/{num2}', function($num1, $num2)
 // Rutas
 Route::get('/', function()
 {
-    return "Pantalla principal";
+    return view('home', );
 });
 
 Route::get('login', function()

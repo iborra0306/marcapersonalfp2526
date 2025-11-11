@@ -2,18 +2,10 @@
 
 @section('menu')
     @parent
-    <p>¡Hola {{ $nombre ?? 'colega' }}!</p>
+    <li>Opcion adicional</li>
 @endsection
 
 @section('content')
-    <ul>
-            @if( count($users) === 1 )
-                Solo hay un usuario!
-            @elseif (count($users) > 1)
-                <li>Hay muchos usuarios!</li>
-                @include('users.usersList', ['users' => $users])
-            @else
-                <li>No hay ningún usuario :(</li>
-            @endif
-        </ul>
+    <h2>Marca Personal FP</h2>
+    <p>Página Principal</p>
 @endsection
