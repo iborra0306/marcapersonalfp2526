@@ -12,6 +12,7 @@
 						<nav id="nav">
 							<ul>
                                 @section('menu')
+<<<<<<< HEAD
 
                                     <li class="current"><a href="index.html">Home</a></li>
                                     <li>
@@ -103,6 +104,8 @@
 						<nav id="nav">
 							<ul>
                                 @section('menu')
+=======
+>>>>>>> e6b53c483049c183d0912b88bb5d2f14776b17ca
 								<li class="current"><a href="index.html">Home</a></li>
 								<li>
 									<a href="#">Dropdown</a>

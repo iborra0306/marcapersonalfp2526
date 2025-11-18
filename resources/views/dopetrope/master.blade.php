@@ -9,6 +9,7 @@
 		<title>Dopetrope by HTML5 UP</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<<<<<<< HEAD
 		<link rel="stylesheet" href="{{ asset('/dopetrope/assets/css/main.css') }}" />
 	</head>
 	<body class="homepage is-preload">
@@ -45,6 +46,8 @@
 		<title>Dopetrope by HTML5 UP</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+=======
+>>>>>>> e6b53c483049c183d0912b88bb5d2f14776b17ca
         <link rel="stylesheet" href="{{ asset('/dopetrope/assets/css/main.css') }}" />
 	</head>
 	<body class="homepage is-preload">
