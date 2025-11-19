@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <html>
     <head>
         <title>Mi Web</title>
@@ -13,7 +12,4 @@
         </div>
     </body>
 </html>
-=======
 @extends('dopetrope.master')
-
->>>>>>> e6b53c483049c183d0912b88bb5d2f14776b17ca
