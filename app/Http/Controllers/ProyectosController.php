@@ -32,4 +32,11 @@ class ProyectosController extends Controller
             ->with('id', $id);
     }
 
+    public function update($id)
+    {
+        return view('proyectos.edit')
+            ->with('proyecto', Proyecto::findOrFail($id))
+            ->with('id', $id);
+    }
+
 }
