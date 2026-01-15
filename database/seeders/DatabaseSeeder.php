@@ -7,7 +7,9 @@ use App\Models\User;
 use Database\Seeders\FamiliasProfesionalesTableSeeder;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,9 +27,13 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]); */
 
+        Model::unguard();
+        Schema::disableForeignKeyConstraints();
+
         self::seedProyectos();
         $this->command->info('Tabla catálogo inicializada con datos!');
         $this->call(FamiliasProfesionalesTableSeeder::class);
+        $this->call(CiclosTableSeeder::class);
     }
 
     private function seedProyectos():void
