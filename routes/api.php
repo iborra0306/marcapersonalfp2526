@@ -12,31 +12,13 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+// Rutas /api/vi1
 Route::prefix('v1')->group(function () {
+
     Route::apiResource('ciclos', CicloController::class);
-    Route::apiResource('familias_profesionales', FamiliaProfesionalController::class)
-    ->parameters([
-        'familias_profesionales' => 'familiaProfesional'
-    ]);
+
+    Route::apiResource('familias_profesionales', FamiliaProfesionalController::class)->parameters([
+   'familias_profesionales' => 'familiaProfesional'
+]);
 });
-
-Route::any('/{any}', function (ServerRequestInterface $request) {
-    $config = new Config([
-        'address' => env('DB_HOST', '127.0.0.1'),
-        'database' => env('DB_DATABASE', 'forge'),
-        'username' => env('DB_USERNAME', 'forge'),
-        'password' => env('DB_PASSWORD', ''),
-        'basePath' => '/api',
-    ]);
-    $api = new Api($config);
-    $response = $api->handle($request);
-
-    try {
-        $records = json_decode($response->getBody()->getContents())->records;
-        $response = response()->json($records, 200, $headers = ['X-Total-Count' => count($records)]);
-    } catch (\Throwable $th) {
-
-    }
-    return $response;
-
-})->where('any', '.*')->middleware(['auth:sanctum']);
