@@ -1,27 +1,22 @@
-
 <?php
 
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CicloResource;
-use App\Models\Ciclo;
+use App\Http\Resources\CurriculoResource;
+use App\Models\Curriculo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class CicloController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $query = Ciclo::query();
-        if($query) {
-            $query->orWhere('nombre', 'like', '%' .$request->q . '%');
-        }
-        return CicloResource::collection(
-            $query->orderBy($request->sort ?? 'id', $request->order ?? 'asc')
-            ->paginate($request->per_page));
+        //
     }
 
     /**
@@ -29,44 +24,44 @@ class CicloController extends Controller
      */
     public function store(Request $request)
     {
-        $ciclo = json_decode($request->getContent(), true);
+        // $curriculoData = json_decode($request->getContent(), true);
+        $curriculoData = [
+            'user_id' => Auth::user()->id
+        ];
+        $curriculo = Curriculo::create($curriculoData);
 
-        $ciclo = Ciclo::create($ciclo);
-
-        return new CicloResource($ciclo);
+        return new CurriculoResource($curriculo);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Ciclo $ciclo)
+    public function show(Curriculo $curriculo)
     {
-        return new CicloResource($ciclo);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Ciclo $ciclo)
+    public function update(Request $request, Curriculo $curriculo)
     {
-        $cicloData = json_decode($request->getContent(), true);
-        $ciclo->update($cicloData);
+        abort_if (! Gate::allows('update-curriculo', $curriculo), 403);
 
-        return new CicloResource($ciclo);
+        $curriculoData = [
+            'user_id' => Auth::user()->id
+        ];
+
+        $curriculo->update($curriculoData);
+
+        return new CurriculoResource($curriculo);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Ciclo $ciclo)
+    public function destroy(Curriculo $curriculo)
     {
-        try {
-            $ciclo->delete();
-            return response()->json(null, 204);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Error: ' . $e->getMessage()
-            ], 400);
-        }
+        //
     }
 }
