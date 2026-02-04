@@ -16,7 +16,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 // Rutas /api/v1
 
 Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
-    Route::apiResource('ciclos', CurriculoController::class);
+    Route::apiResource('ciclos', CicloController::class);
     Route::apiResource('curriculos', CurriculoController::class);
 
     Route::apiResource('familias_profesionales', FamiliaProfesionalController::class)
