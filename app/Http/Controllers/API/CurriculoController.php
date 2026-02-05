@@ -46,7 +46,6 @@ class CurriculoController extends Controller
      */
     public function update(Request $request, Curriculo $curriculo)
     {
-        abort_if (! Gate::allows('update-curriculo', $curriculo), 403);
 
         $curriculoData = [
             'user_id' => Auth::user()->id
