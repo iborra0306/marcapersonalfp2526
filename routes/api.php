@@ -15,18 +15,21 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 // Rutas /api/v1
 
-Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
-    Route::apiResource('ciclos', CicloController::class);
-    Route::apiResource('curriculos', CurriculoController::class);
+Route::prefix('v1')->group(function () {
+    Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
+        Route::apiResource('ciclos', CicloController::class);
+        Route::apiResource('curriculos', CurriculoController::class)
+        ->except(['index', 'show']);
 
-    Route::apiResource('familias_profesionales', FamiliaProfesionalController::class)
-    ->parameters([
-        'familias_profesionales' => 'familiaProfesional'
-    ]);
+        Route::apiResource('familias_profesionales', FamiliaProfesionalController::class)
+        ->parameters([
+            'familias_profesionales' => 'familiaProfesional'
+        ]);
 
+    });
+    Route::get('/curriculos', [CurriculoController::class, 'index']);
+    Route::get('/curriculos/{curriculo}', [CurriculoController::class, 'show']);
 });
-
-
 
 // Rutas PHP-CRUD-API
 Route::any('/{any}', function (ServerRequestInterface $request) {

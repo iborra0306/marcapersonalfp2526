@@ -16,7 +16,7 @@ class CurriculoController extends Controller
      */
     public function index()
     {
-        //
+        return CurriculoResource::collection(Curriculo::where('user_id', Auth::user()->id)->get());
     }
 
     /**
@@ -38,7 +38,7 @@ class CurriculoController extends Controller
      */
     public function show(Curriculo $curriculo)
     {
-        //
+        return new CurriculoResource($curriculo);
     }
 
     /**
@@ -46,6 +46,8 @@ class CurriculoController extends Controller
      */
     public function update(Request $request, Curriculo $curriculo)
     {
+
+        abort_if ($request->user()->cannot('update', $curriculo), 403);
 
         $curriculoData = [
             'user_id' => Auth::user()->id
